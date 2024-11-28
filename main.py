@@ -1,7 +1,7 @@
 
 ## // Imports \\ ##
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import timeit
 
 # Sieve of eratosthenes is used to find every prime number up to and including n
@@ -53,7 +53,26 @@ def goldbach_strong_conjecture(n):
 
     return sum_x, sum_y
 
+def launch_gui():
+    root = tk.Tk()
+    root.title("Goldbach Conjecture")
+    root.geometry("260x500")
+
+    prompt_label = tk.Label(root, text="Try any even natural number greater than two!", anchor="center", justify="center")
+    prime_spinbox = tk.Spinbox(root, from_=3, to=99999999999999999999, relief="sunken", repeatdelay=500, repeatinterval=100, textvariable=tk.DoubleVar(value=137) ,font=("Arial", 12), bg="lightgrey", fg="black", state="normal", cursor="hand2", bd=3, justify="center", width=10, wrap=True)
+    enter_button = tk.Button(root, text="Let's go!", bd=3, cursor="hand2", overrelief="raised", width=5)
+
+
+
+    prompt_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
+    prime_spinbox.grid(row=1, column=0, padx=5, pady=5, sticky=tk.N)
+    enter_button.grid(row=2, column=0, padx=5, pady=5, sticky=tk.N)
+
+    root.mainloop()
+
+
 if __name__ == '__main__':
+    launch_gui()
     num = int(input("Please enter an even natural number greater than 2 >> "))
     timer_start = timeit.default_timer()
     x, y = goldbach_strong_conjecture(num)
