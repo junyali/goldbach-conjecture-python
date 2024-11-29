@@ -2,7 +2,7 @@
 ## // Imports \\ ##
 import tkinter as tk
 import tkinter.messagebox
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, PhotoImage
 import timeit
 
 class GUI:
@@ -90,6 +90,9 @@ class GUI:
         self.root.title("Goldbach Conjecture")
         self.root.geometry("260x230")
 
+        image = PhotoImage(file="./program-icon.png")
+        self.root.iconphoto(False, image)
+
         self.prompt_label = tk.Label(self.root, text="Try any even natural number greater than two!", anchor="center", justify="center")
         self.prime_spinbox = tk.Spinbox(self.root, from_=1, to=99999999999999999999, relief="sunken", repeatdelay=500, repeatinterval=100, textvariable=tk.IntVar(), font=("Arial", 12), bg="lightgrey", fg="black", state="normal", cursor="hand2", bd=3, justify="center", width=10, wrap=True, command=self.changed_spinbox_value)
         self.enter_button = tk.Button(self.root, text="Let's go!", bd=3, cursor="hand2", overrelief="ridge", width=10, command=self.clicked_enter_button)
@@ -100,7 +103,6 @@ class GUI:
         self.spinbox_value = self.prime_spinbox.get()
         self.progressbar["value"] = 0
 
-
         self.prompt_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N)
         self.prime_spinbox.grid(row=1, column=0, padx=5, pady=5, sticky=tk.N)
         self.enter_button.grid(row=2, column=0, padx=5, pady=5, sticky=tk.N)
@@ -108,8 +110,8 @@ class GUI:
         self.progress_label.grid(row=4, column=0, columnspan=2, padx=5, pady=5, sticky=tk.N)
         self.results_combo.grid(row=5, column=0, padx=5, pady=5, sticky=tk.N)
 
-        self.root.mainloop()
 
 
 if __name__ == '__main__':
-    GUI()
+    program = GUI()
+    program.root.mainloop()
