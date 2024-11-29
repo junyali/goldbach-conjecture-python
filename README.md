@@ -1,4 +1,5 @@
 # Goldbach Conjecture Python
+
 ![image](program-icon.png "Icon")
 
 A Python implementation of the Goldbach Strong Conjecture.
@@ -8,6 +9,7 @@ Goldbach's Conjecture is one of the oldest and best-known unsolved problems in m
 
 ## How does this program work?
 Just enter any even natural number greater than 2 (n) in the spinbox and click "Let's go!". The program will return all possible combinations (sum of two primes) for n.
+
 ![image](demo.gif "Demo")
 
 ### ⚠️ Warning ⚠️ ###
