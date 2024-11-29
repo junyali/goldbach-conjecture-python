@@ -1,6 +1,5 @@
 
 ## // Imports \\ ##
-import copy
 import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk, messagebox
