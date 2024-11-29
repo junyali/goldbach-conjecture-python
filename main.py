@@ -26,11 +26,6 @@ class GUI:
 
         return primes
 
-    def trim_prime_two(self, primes):
-        primes.remove(2)
-
-        return primes
-
     def goldbach_strong_conjecture(self, n, primes):
         sums = []
         # sum_x and sum_y are two prime numbers of which the sum is n
@@ -52,14 +47,13 @@ class GUI:
         return sums
 
     def start_find(self):
+        timer_start = timeit.default_timer()
+
         n = self.spinbox_value
         self.progressbar.start()
         self.progress_label.config(text="Collecting primes up to {}".format(n))
 
         primes = self.sieve_of_eratosthenes(n)
-
-        self.progress_label.config(text="Removing prime 2")
-        self.trim_prime_two(primes)
 
         self.progress_label.config(text="Finding prime sums of {}".format(n))
         sums = self.goldbach_strong_conjecture(n, primes)
@@ -67,7 +61,10 @@ class GUI:
         self.progressbar.stop()
         self.progressbar["value"] = 0
 
-        self.progress_label.config(text="Sums found")
+        timer_end = timeit.default_timer()
+        time_difference = timer_end - timer_start
+
+        self.progress_label.config(text="Search took {time} seconds".format(time=time_difference))
         self.results_combo.config(values=sums)
 
     def changed_spinbox_value(self):
@@ -94,7 +91,7 @@ class GUI:
         self.root.geometry("260x230")
 
         self.prompt_label = tk.Label(self.root, text="Try any even natural number greater than two!", anchor="center", justify="center")
-        self.prime_spinbox = tk.Spinbox(self.root, from_=3, to=99999999999999999999, relief="sunken", repeatdelay=500, repeatinterval=100, textvariable=tk.IntVar(), font=("Arial", 12), bg="lightgrey", fg="black", state="normal", cursor="hand2", bd=3, justify="center", width=10, wrap=True, command=self.changed_spinbox_value)
+        self.prime_spinbox = tk.Spinbox(self.root, from_=1, to=99999999999999999999, relief="sunken", repeatdelay=500, repeatinterval=100, textvariable=tk.IntVar(), font=("Arial", 12), bg="lightgrey", fg="black", state="normal", cursor="hand2", bd=3, justify="center", width=10, wrap=True, command=self.changed_spinbox_value)
         self.enter_button = tk.Button(self.root, text="Let's go!", bd=3, cursor="hand2", overrelief="ridge", width=10, command=self.clicked_enter_button)
         self.progressbar = ttk.Progressbar(self.root, orient="horizontal", mode="indeterminate", length=250)
         self.progress_label = tk.Label(self.root, text="", anchor="center", justify="center", wraplength=250)
